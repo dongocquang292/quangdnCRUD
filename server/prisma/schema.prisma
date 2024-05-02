@@ -14,11 +14,12 @@ datasource db {
 }
 
 model Author {
-  id      String   @id @default(uuid())
-  books Book[]
-  username String   @unique
-  email    String   @unique
-  password String
+  id        String   @id @default(uuid())
+  books     Book[]
+  username  String   @unique
+  email     String   @unique
+  password  String
+  address   String
 }
 
 model Book {
