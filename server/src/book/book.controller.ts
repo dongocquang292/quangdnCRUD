@@ -27,7 +27,6 @@ export class BookController {
     @Res() res: Response,
   ): Promise<Response<any, Record<string, any>>> {
     const new_book = await this.bookService.create(bookDto, authorId);
-    console.info('1111111111111111')
     return res.status(201).send({
       success: true,
       message: 'Book created successfully',
