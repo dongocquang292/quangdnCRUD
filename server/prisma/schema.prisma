@@ -12,20 +12,29 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
 model Author {
-  id        String   @id @default(uuid())
-  books     Book[]
-  username  String   @unique
-  email     String   @unique
+  id        Int        @id @default(autoincrement())
+  email     String     @unique
   password  String
-  address   String
+  fullname  String?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  Books  Book[]
+
+  @@unique([id, email])
+  @@map("authors")
 }
 
 model Book {
-  id        String   @id @default(uuid())
-  title     String
-  authorId  String
-  author    Author?  @relation(fields: [authorId], references: [id])
-  published DateTime
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  link        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  authorId Int
+  author   Author @relation(fields: [authorId], references: [id])
+
+  @@map("bookmarks")
 }
