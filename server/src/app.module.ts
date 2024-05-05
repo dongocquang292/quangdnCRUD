@@ -1,19 +1,9 @@
 import { Module } from '@nestjs/common';
-import { AuthModule } from './auth/auth.module';
-import { AuthorModule } from './author/author.module';
-import { BookModule } from './book/book.module';
-import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
+import { BooksModule } from './books/book.module';
+
 @Module({
-  imports: [
-    AuthModule,
-    AuthorModule,
-    BookModule,
-    PrismaModule,
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
-  ],
+  imports: [ConfigModule.forRoot(), BooksModule],
   providers: [],
 })
 export class AppModule {}
